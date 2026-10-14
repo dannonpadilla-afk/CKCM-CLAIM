@@ -1,0 +1,19 @@
+<svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="20" x2="300" y2="200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EAF5FF"/>
+      <stop offset="1" stop-color="#DDEBFF"/>
+    </linearGradient>
+    <linearGradient id="card" x1="90" y1="50" x2="250" y2="170" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F3F8FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="220" rx="28" fill="url(#bg)"/>
+  <rect x="58" y="38" width="204" height="144" rx="24" fill="url(#card)"/>
+  <path d="M96 119C96 99.1188 112.119 83 132 83H188C207.881 83 224 99.1188 224 119V135C224 154.882 207.881 171 188 171H132C112.119 171 96 154.882 96 135V119Z" fill="#B9D8FF"/>
+  <circle cx="140" cy="109" r="18" fill="#7FB6FF"/>
+  <path d="M169 128L187 146L221 109" stroke="#4D8CF5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="103" y="64" width="114" height="12" rx="6" fill="#DCEBFF"/>
+  <rect x="103" y="86" width="76" height="10" rx="5" fill="#EAF2FF"/>
+</svg>

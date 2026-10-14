@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit record' if item else ('Log a found item' if kind == 'found' else 'Report a lost item') }}{% endblock %}
+{% block content %}
+<header class="page-head"><h1>{{ 'Edit record' if item else ('Log a found item' if kind == 'found' else 'Report a lost item') }}</h1></header>
+<form method="post" class="form" enctype="multipart/form-data" novalidate>
+  <label>Item name<input name="name" value="{{ form.get('name','') }}" maxlength="80" required></label>
+  <label>Category
+    <select name="category" id="category-select">{% for c in categories %}<option {{ 'selected' if form.get('category') == c }}>{{ c }}</option>{% endfor %}</select></label>
+  <div id="amount-field" {% if form.get('category') != 'Money' %}hidden{% endif %}>
+    <label>Amount<input id="amount-input" name="amount" type="number" min="0.01" step="0.01" value="{{ form.get('amount','') }}" {% if form.get('category') == 'Money' %}required{% endif %}></label>
+  </div>
+  <label>Description<textarea name="description" rows="3" maxlength="300" required>{{ form.get('description','') }}</textarea></label>
+  <label>{{ 'Where it was found' if kind == 'found' else 'Where you last had it' }}<input name="location" value="{{ form.get('location','') }}" maxlength="80" required></label>
+  <label>{{ 'Date found' if kind == 'found' else 'Date lost' }}<input name="date" type="date" max="{{ today_iso }}" value="{{ form.get('date','') }}" required></label>
+  {% if kind == 'lost' %}
+  <label>Lost item photo
+    <input type="file" name="image" accept="image/*">
+    {% if item and item.image_url %}<div class="photo-preview inline"><img src="{{ item.image_url }}" alt="{{ item.name }} preview"></div>{% endif %}
+  </label>
+  {% endif %}
+  {% if kind == 'found' %}
+  <label>Hidden identifying detail
+    <input name="identifier" value="{{ form.get('identifier','') }}" maxlength="200" required>
+    <small class="muted">Only staff see this. Use it to check claims, e.g. a mark inside the item.</small></label>
+  {% endif %}
+  {% if item %}
+  <label>Status
+    <select name="status">{% for s in item.statuses %}<option value="{{ s }}" {{ 'selected' if form.get('status') == s }}>{{ 'Lost' if item.kind == 'lost' and s == 'open' else 'Found' if item.kind == 'lost' and s == 'resolved' else s|capitalize }}</option>{% endfor %}</select></label>
+  {% endif %}
+  <div class="row-actions"><button class="btn" type="submit">{{ 'Save changes' if item else ('Log item' if kind == 'found' else 'Send report') }}</button>
+    <a class="btn ghost" href="{{ url_for('found_items' if kind == 'found' else 'lost_reports') }}">Cancel</a></div>
+</form>
+<script>
+  const categorySelect = document.getElementById('category-select');
+  const amountField = document.getElementById('amount-field');
+  const amountInput = document.getElementById('amount-input');
+  function updateAmountField() {
+    const isMoney = categorySelect.value === 'Money';
+    amountField.hidden = !isMoney;
+    amountInput.required = isMoney;
+    if (!isMoney) amountInput.value = '';
+  }
+  categorySelect.addEventListener('change', updateAmountField);
+  updateAmountField();
+</script>
+{% endblock %}

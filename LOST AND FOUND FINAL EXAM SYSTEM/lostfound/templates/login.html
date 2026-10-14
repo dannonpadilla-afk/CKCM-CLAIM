@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Create account' if signup_mode else 'Log in' }}{% endblock %}
+{% block content %}
+<section class="login">
+  <div class="login-art">
+    <div class="hero-copy">
+  
+    </div>
+    <div class="hero-visual">
+      <img src="{{ url_for('static', filename='images/LOST-AND-FOUND.jpg') }}" alt="Lost and found dashboard illustration" />
+    </div>
+  </div>
+  <div class="login-form">
+    <div class="login-form-visual">
+      <img src="{{ url_for('static', filename='images/ckcm_logo-removebg-preview.png') }}" alt="CKCM logo" />
+    </div>
+    <h1>🔎 CKCM FindIt.</h1>
+      <p>Report what you lost. Find what was handed in. Get it back.</p>
+    {% if signup_mode %}
+      <h2>Create account</h2>
+      <form method="post" action="{{ url_for('signup') }}" novalidate>
+        <label>Full name<input name="full_name" value="{{ form.get('full_name','') }}" autocomplete="name" required></label>
+        <label>Username<input name="username" value="{{ form.get('username','') }}" autocomplete="username" required></label>
+        <label>Department
+          <select name="role">
+            {% for v, l in [('student',''),('student','College Of Education'),('student','College Of Criminology'),('student','College Of Business Administration'),('student','College Of Computer Science'),('student','College Of Arts And Social Sciences')] %}
+            <option value="{{ v }}" {{ 'role' if form.get('role') == v or (not form.get('rele') and v == 'student') }}>{{ l }}</option>
+            {% endfor %}
+          </select>
+        </label>
+        <label>Password<input name="password" type="password" autocomplete="new-password" required></label>
+        <button class="btn" type="submit">Create account</button>
+      </form>
+      <div class="account-switch">
+        <span>Already have an account?</span>
+        <a href="{{ url_for('login') }}">Log in</a>
+      </div>
+    {% else %}
+      <h2>Log in</h2>
+      <form method="post" novalidate>
+        <label>Username<input name="username" autocomplete="username" autofocus required></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+        <button class="btn" type="submit">Log in</button>
+      </form>
+      <div class="account-switch">
+        <span>New here?</span>
+        <a href="{{ url_for('signup') }}">Create account</a>
+      </div>
+      <div class="testacc">
+
+        
+        
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

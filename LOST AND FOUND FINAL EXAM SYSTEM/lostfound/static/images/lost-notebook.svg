@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="320" viewBox="0 0 480 320" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="36" y1="22" x2="441" y2="300" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF0D9"/><stop offset="1" stop-color="#F5D8A7"/></linearGradient>
+    <linearGradient id="book" x1="166" y1="55" x2="316" y2="268" gradientUnits="userSpaceOnUse"><stop stop-color="#67A77B"/><stop offset="1" stop-color="#327652"/></linearGradient>
+  </defs>
+  <rect width="480" height="320" rx="28" fill="url(#bg)"/>
+  <ellipse cx="242" cy="274" rx="105" ry="14" fill="#9A7443" fill-opacity=".2"/>
+  <path d="M166 74c0-12 10-22 22-22h121c12 0 22 10 22 22v180c0 12-10 22-22 22H188c-12 0-22-10-22-22V74Z" fill="url(#book)" stroke="#286345" stroke-width="5"/>
+  <path d="M188 52v224" stroke="#246142" stroke-width="8"/>
+  <path d="M177 83h11m-11 24h11m-11 24h11m-11 24h11m-11 24h11m-11 24h11m-11 24h11m-11 24h11" stroke="#D9EFE0" stroke-width="4" stroke-linecap="round"/>
+  <rect x="211" y="92" width="91" height="116" rx="8" fill="#F5F3DC" fill-opacity=".96"/>
+  <path d="M228 119h57m-57 19h57m-57 19h45m-45 19h52" stroke="#9AA995" stroke-width="4" stroke-linecap="round"/>
+  <path d="M259 72v30" stroke="#E8B454" stroke-width="8" stroke-linecap="round"/>
+</svg>

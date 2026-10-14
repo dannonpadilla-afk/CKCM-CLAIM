@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="320" viewBox="0 0 480 320" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="38" y1="14" x2="438" y2="306" gradientUnits="userSpaceOnUse"><stop stop-color="#EAF0FF"/><stop offset="1" stop-color="#C8D7F3"/></linearGradient>
+    <linearGradient id="case" x1="169" y1="126" x2="314" y2="242" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCE4F1"/></linearGradient>
+  </defs>
+  <rect width="480" height="320" rx="28" fill="url(#bg)"/>
+  <circle cx="240" cy="164" r="112" fill="#FFF" fill-opacity=".34"/>
+  <ellipse cx="240" cy="259" rx="95" ry="13" fill="#6579A8" fill-opacity=".18"/>
+  <path d="M164 170c0-22 18-40 40-40h72c22 0 40 18 40 40v41c0 25-20 45-45 45h-62c-25 0-45-20-45-45v-41Z" fill="url(#case)" stroke="#ABBAD3" stroke-width="5"/>
+  <path d="M168 184h144" stroke="#B4C1D7" stroke-width="5"/>
+  <circle cx="240" cy="222" r="6" fill="#66A78B"/>
+  <path d="M190 105V76c0-14 11-25 25-25s25 11 25 25v29c0 12-10 22-22 22h-6c-12 0-22-10-22-22Zm51-20V64c0-13 10-23 23-23s23 10 23 23v21c0 12-10 22-22 22h-2c-12 0-22-10-22-22Z" fill="#FFF" stroke="#B7C5DB" stroke-width="5"/>
+  <path d="M213 127v24m62-33v33" stroke="#B7C5DB" stroke-width="5" stroke-linecap="round"/>
+</svg>

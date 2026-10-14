@@ -1,0 +1,39 @@
+{% if items %}
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Item</th><th>Category</th><th>Where</th><th>Date</th><th>Type</th><th>Status</th><th></th></tr></thead>
+  <tbody>
+  {% for i in items %}
+  <tr>
+    <td>
+      {% if i.kind == 'lost' %}
+      <div class="item-thumb"><img src="{{ i.image_url or '/static/images/lost-item-default.svg' }}" alt="{{ i.name }}"></div>
+      {% endif %}
+      <div class="item-copy"><strong>{{ i.name }}</strong><br><small class="muted">{{ i.description }}</small>
+        {% if i.category == 'Money' and i.amount is not none %}<br><small class="muted">Amount: {{ '{:,.2f}'.format(i.amount) }}</small>{% endif %}
+      </div>
+    </td>
+    <td>{{ i.category }}</td>
+    <td>{{ i.location }}</td>
+    <td class="num">{{ i.when.strftime('%b %d, %Y') }}</td>
+    <td>{{ i.kind_label }}</td>
+    <td><span class="badge s-{{ i.status|replace(' ', '-') }}">{{ 'Lost' if i.kind == 'lost' and i.status == 'open' else 'Found' if i.kind == 'lost' and i.status == 'resolved' else i.status|capitalize }}</span></td>
+    <td class="actions">
+      {% if i.kind == 'found' and current_user.can('claims.submit') and i.is_active %}
+        {% if i.id in claim_ids %}<span class="muted">Claim sent</span>
+        {% else %}<a class="btn small" href="{{ url_for('claim_item', item_id=i.id) }}">This is mine</a>{% endif %}
+      {% endif %}
+      {% if i.kind == 'lost' and i.is_active and i.can_edit(current_user) %}
+        <form method="post" action="{{ url_for('lost_resolve', item_id=i.id) }}"><button class="btn small ghost">Mark as found</button></form>
+      {% endif %}
+      {% if i.can_edit(current_user) %}<a class="btn small ghost" href="{{ url_for('item_edit', item_id=i.id) }}">Edit</a>{% endif %}
+      {% if i.can_delete(current_user) %}
+        <form method="post" action="{{ url_for('item_delete', item_id=i.id) }}" onsubmit="return confirm('Delete this record?')"><button class="btn small danger">Delete</button></form>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
